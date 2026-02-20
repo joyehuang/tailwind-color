@@ -387,11 +387,86 @@ export const tailwindColors: ColorGroup[] = [
       { shade: 950, hex: "#0c0a09", oklch: "oklch(14.7% 0.004 49.25)", tailwindClass: "bg-stone-950" },
     ],
   },
+  {
+    name: "taupe",
+    label: "Taupe",
+    shades: [
+      { shade: 50, hex: "#fbfaf9", oklch: "oklch(98.6% 0.002 67.8)", tailwindClass: "bg-taupe-50" },
+      { shade: 100, hex: "#f3f1f1", oklch: "oklch(96% 0.002 17.2)", tailwindClass: "bg-taupe-100" },
+      { shade: 200, hex: "#e8e4e3", oklch: "oklch(92.2% 0.005 34.3)", tailwindClass: "bg-taupe-200" },
+      { shade: 300, hex: "#d8d2d0", oklch: "oklch(86.8% 0.007 39.5)", tailwindClass: "bg-taupe-300" },
+      { shade: 400, hex: "#aba09c", oklch: "oklch(71.4% 0.014 41.2)", tailwindClass: "bg-taupe-400" },
+      { shade: 500, hex: "#7c6d67", oklch: "oklch(54.7% 0.021 43.1)", tailwindClass: "bg-taupe-500" },
+      { shade: 600, hex: "#5b4f4b", oklch: "oklch(43.8% 0.017 39.3)", tailwindClass: "bg-taupe-600" },
+      { shade: 700, hex: "#473c39", oklch: "oklch(36.7% 0.016 35.7)", tailwindClass: "bg-taupe-700" },
+      { shade: 800, hex: "#2b2422", oklch: "oklch(26.8% 0.011 36.5)", tailwindClass: "bg-taupe-800" },
+      { shade: 900, hex: "#1d1816", oklch: "oklch(21.4% 0.009 43.1)", tailwindClass: "bg-taupe-900" },
+      { shade: 950, hex: "#0c0a09", oklch: "oklch(14.7% 0.004 49.3)", tailwindClass: "bg-taupe-950" },
+    ],
+  },
+  {
+    name: "mauve",
+    label: "Mauve",
+    shades: [
+      { shade: 50, hex: "#fafafa", oklch: "oklch(98.5% 0 0)", tailwindClass: "bg-mauve-50" },
+      { shade: 100, hex: "#f3f1f3", oklch: "oklch(96% 0.003 325.6)", tailwindClass: "bg-mauve-100" },
+      { shade: 200, hex: "#e7e4e7", oklch: "oklch(92.2% 0.005 325.62)", tailwindClass: "bg-mauve-200" },
+      { shade: 300, hex: "#d7d0d7", oklch: "oklch(86.5% 0.012 325.68)", tailwindClass: "bg-mauve-300" },
+      { shade: 400, hex: "#a89ea9", oklch: "oklch(71.1% 0.019 323.02)", tailwindClass: "bg-mauve-400" },
+      { shade: 500, hex: "#79697b", oklch: "oklch(54.2% 0.034 322.5)", tailwindClass: "bg-mauve-500" },
+      { shade: 600, hex: "#594c5b", oklch: "oklch(43.5% 0.029 321.78)", tailwindClass: "bg-mauve-600" },
+      { shade: 700, hex: "#463947", oklch: "oklch(36.4% 0.029 323.89)", tailwindClass: "bg-mauve-700" },
+      { shade: 800, hex: "#2a212c", oklch: "oklch(26.3% 0.024 320.12)", tailwindClass: "bg-mauve-800" },
+      { shade: 900, hex: "#1d161e", oklch: "oklch(21.2% 0.019 322.12)", tailwindClass: "bg-mauve-900" },
+      { shade: 950, hex: "#0c090c", oklch: "oklch(14.5% 0.008 326)", tailwindClass: "bg-mauve-950" },
+    ],
+  },
+  {
+    name: "mist",
+    label: "Mist",
+    shades: [
+      { shade: 50, hex: "#f9fbfb", oklch: "oklch(98.7% 0.002 197.1)", tailwindClass: "bg-mist-50" },
+      { shade: 100, hex: "#f1f3f3", oklch: "oklch(96.3% 0.002 197.1)", tailwindClass: "bg-mist-100" },
+      { shade: 200, hex: "#e3e7e8", oklch: "oklch(92.5% 0.005 214.3)", tailwindClass: "bg-mist-200" },
+      { shade: 300, hex: "#d0d6d8", oklch: "oklch(87.2% 0.007 219.6)", tailwindClass: "bg-mist-300" },
+      { shade: 400, hex: "#9ca8ab", oklch: "oklch(72.3% 0.014 214.4)", tailwindClass: "bg-mist-400" },
+      { shade: 500, hex: "#67787c", oklch: "oklch(56% 0.021 213.5)", tailwindClass: "bg-mist-500" },
+      { shade: 600, hex: "#4b585b", oklch: "oklch(45% 0.017 213.2)", tailwindClass: "bg-mist-600" },
+      { shade: 700, hex: "#394447", oklch: "oklch(37.8% 0.015 216)", tailwindClass: "bg-mist-700" },
+      { shade: 800, hex: "#22292b", oklch: "oklch(27.5% 0.011 216.9)", tailwindClass: "bg-mist-800" },
+      { shade: 900, hex: "#161b1d", oklch: "oklch(21.8% 0.008 223.9)", tailwindClass: "bg-mist-900" },
+      { shade: 950, hex: "#090b0c", oklch: "oklch(14.8% 0.004 228.8)", tailwindClass: "bg-mist-950" },
+    ],
+  },
+  {
+    name: "olive",
+    label: "Olive",
+    shades: [
+      { shade: 50, hex: "#fbfbf9", oklch: "oklch(98.8% 0.003 106.5)", tailwindClass: "bg-olive-50" },
+      { shade: 100, hex: "#f4f4f0", oklch: "oklch(96.6% 0.005 106.5)", tailwindClass: "bg-olive-100" },
+      { shade: 200, hex: "#e8e8e3", oklch: "oklch(93% 0.007 106.5)", tailwindClass: "bg-olive-200" },
+      { shade: 300, hex: "#d8d8d0", oklch: "oklch(88% 0.011 106.6)", tailwindClass: "bg-olive-300" },
+      { shade: 400, hex: "#abab9c", oklch: "oklch(73.7% 0.021 106.9)", tailwindClass: "bg-olive-400" },
+      { shade: 500, hex: "#7c7c67", oklch: "oklch(58% 0.031 107.3)", tailwindClass: "bg-olive-500" },
+      { shade: 600, hex: "#5b5b4b", oklch: "oklch(46.6% 0.025 107.3)", tailwindClass: "bg-olive-600" },
+      { shade: 700, hex: "#474739", oklch: "oklch(39.4% 0.023 107.4)", tailwindClass: "bg-olive-700" },
+      { shade: 800, hex: "#2b2b22", oklch: "oklch(28.6% 0.016 107.4)", tailwindClass: "bg-olive-800" },
+      { shade: 900, hex: "#1d1d16", oklch: "oklch(22.8% 0.013 107.4)", tailwindClass: "bg-olive-900" },
+      { shade: 950, hex: "#0c0c09", oklch: "oklch(15.3% 0.006 107.1)", tailwindClass: "bg-olive-950" },
+    ],
+  },
 ];
 
 export const colorCategories = [
   { label: "彩色", colors: ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"] },
-  { label: "灰色系", colors: ["slate", "gray", "zinc", "neutral", "stone"] },
+  { label: "灰色系", colors: ["slate", "gray", "zinc", "neutral", "stone", "taupe", "mauve", "mist", "olive"] },
 ];
 
 export const shadeLabels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+
+export const shadeTips = [
+  { range: "50 - 100", usage: "极浅背景", desc: "次要背景、Hover 状态的浅色背景", example: "bg-blue-50, hover:bg-blue-100" },
+  { range: "200 - 300", usage: "边框 / 分割线", desc: "组件的 Border 和分割线颜色", example: "border-gray-200, divide-slate-300" },
+  { range: "400 - 600", usage: "主色调", desc: "Button 背景色，500 为默认态，600 为 Hover 态", example: "bg-blue-500, hover:bg-blue-600" },
+  { range: "700 - 950", usage: "文本颜色", desc: "900 用于高对比度主标题，700 用于次要文本", example: "text-gray-900, text-gray-700" },
+];

@@ -48,8 +48,11 @@ export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, on
   };
 
   return (
-    <button
+    <div
       onClick={handleCopy}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleCopy(); }}
       className="group relative flex flex-col rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-lg hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer"
     >
       <div
@@ -62,21 +65,24 @@ export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, on
         >
           {justCopied ? <Check className="h-5 w-5" /> : <Copy className="h-4 w-4" />}
         </div>
-        <button
+        <div
           onClick={(e) => {
             e.stopPropagation();
             onToggleFavorite();
           }}
-          className="absolute top-1.5 right-1.5 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.stopPropagation(); onToggleFavorite(); } }}
+          className="absolute top-1.5 right-1.5 opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded cursor-pointer"
           style={{ color: textColor }}
         >
           <Heart className={`h-3.5 w-3.5 ${isFavorite ? "fill-current" : ""}`} />
-        </button>
+        </div>
       </div>
       <div className="flex flex-col gap-0.5 px-2 py-1.5 bg-card text-left">
         <span className="text-[11px] font-medium text-foreground">{shade.shade}</span>
         <span className="text-[10px] font-mono text-muted-foreground uppercase">{shade.hex}</span>
       </div>
-    </button>
+    </div>
   );
 }

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { Heart, Palette, ChevronDown } from "lucide-react";
+import { Heart, ChevronDown, Search, X, Copy, Grid3X3, List } from "lucide-react";
 import { tailwindColors, colorCategories, shadeLabels } from "@/lib/tailwind-colors";
-import { ColorSearch } from "@/components/color-search";
 import { ColorRow } from "@/components/color-row";
 import { ColorDetailPanel } from "@/components/color-detail-panel";
 import { FavoritesPanel } from "@/components/favorites-panel";
 import { CopyToast } from "@/components/copy-toast";
+import { ShadeTips } from "@/components/shade-tips";
 import type { ColorShade } from "@/lib/tailwind-colors";
 
 type CopyFormat = "hex" | "oklch" | "tailwind" | "css-var";
@@ -110,29 +110,51 @@ export default function TailwindColorsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          {/* Top Row: Branding + Actions */}
+          <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-primary">
-                <Palette className="h-4 w-4 text-primary-foreground" />
+              {/* Color bar logo */}
+              <div className="flex h-6 rounded-md overflow-hidden shrink-0">
+                {["#ef4444","#f97316","#eab308","#22c55e","#3b82f6","#8b5cf6","#ec4899"].map(c => (
+                  <div key={c} className="w-2 h-full" style={{ backgroundColor: c }} />
+                ))}
               </div>
               <div>
-                <h1 className="text-base font-semibold text-foreground leading-tight">Tailwind Colors</h1>
-                <p className="text-xs text-muted-foreground hidden sm:block">点击色块快速复制，开发必备调色板</p>
+                <h1 className="text-sm font-bold text-foreground tracking-tight">Tailwind Colors</h1>
+                <p className="text-[11px] text-muted-foreground hidden sm:block">v4 Full Palette &middot; {tailwindColors.length} colors &middot; {tailwindColors.length * 11} shades</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3">
-              <ColorSearch value={search} onChange={setSearch} />
+            <div className="flex items-center gap-2">
+              {/* Search */}
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="搜索颜色..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-36 sm:w-52 rounded-lg border border-border bg-secondary pl-8 pr-8 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+                />
+                {search && (
+                  <button
+                    onClick={() => setSearch("")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
 
               {/* Format Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setFormatDropdownOpen(!formatDropdownOpen)}
-                  className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-3 py-2 text-xs font-medium text-foreground hover:bg-accent transition-colors"
+                  className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"
                 >
-                  <span className="hidden sm:inline">复制格式:</span>
+                  <Copy className="h-3 w-3 text-muted-foreground" />
                   <span className="text-primary">{FORMAT_OPTIONS.find((f) => f.value === copyFormat)?.label}</span>
                   <ChevronDown className="h-3 w-3 text-muted-foreground" />
                 </button>
@@ -162,29 +184,30 @@ export default function TailwindColorsPage() {
               <div className="hidden sm:flex items-center rounded-lg border border-border overflow-hidden">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`px-3 py-2 text-xs font-medium transition-colors ${
+                  className={`p-1.5 transition-colors ${
                     viewMode === "grid" ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
                   }`}
+                  title="网格视图"
                 >
-                  网格
+                  <Grid3X3 className="h-3.5 w-3.5" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`px-3 py-2 text-xs font-medium transition-colors ${
+                  className={`p-1.5 transition-colors ${
                     viewMode === "list" ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
                   }`}
+                  title="列表视图"
                 >
-                  列表
+                  <List className="h-3.5 w-3.5" />
                 </button>
               </div>
 
               {/* Favorites Button */}
               <button
                 onClick={() => setFavoritesOpen(!favoritesOpen)}
-                className="relative flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-3 py-2 text-xs font-medium text-foreground hover:bg-accent transition-colors"
+                className="relative flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"
               >
                 <Heart className={`h-3.5 w-3.5 ${favorites.size > 0 ? "fill-primary text-primary" : "text-muted-foreground"}`} />
-                <span className="hidden sm:inline">收藏</span>
                 {favorites.size > 0 && (
                   <span className="flex items-center justify-center h-4 min-w-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold px-1">
                     {favorites.size}
@@ -214,6 +237,10 @@ export default function TailwindColorsPage() {
 
       {/* Main Content */}
       <main className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-6">
+        {/* Shade Tips */}
+        <div className="mb-6">
+          <ShadeTips />
+        </div>
         {viewMode === "grid" ? (
           <div className="flex flex-col gap-6">
             {colorGroups.map((group) => (
@@ -304,7 +331,7 @@ export default function TailwindColorsPage() {
       <footer className="border-t border-border py-6 mt-8">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <p className="text-xs text-muted-foreground text-center">
-            基于 Tailwind CSS v4 官方调色板 / 点击色块复制 / 双击列表模式色块查看详情 / 支持 HEX、OKLCH、Tailwind Class、CSS Variable 格式
+            Tailwind CSS v4.2 Full Palette ({tailwindColors.length} colors / {tailwindColors.length * 11} shades) &middot; 点击色块复制 &middot; 双击列表模式色块查看详情 &middot; HEX / OKLCH / Tailwind Class / CSS Variable
           </p>
         </div>
       </footer>

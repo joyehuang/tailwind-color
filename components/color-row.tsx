@@ -18,7 +18,14 @@ export function ColorRow({ group, favorites, onToggleFavorite, onCopy, copyForma
     <div className="group/row">
       <div className="flex items-start gap-4">
         <div className="w-20 shrink-0 pt-4 sm:pt-5">
-          <span className="text-sm font-medium text-foreground capitalize">{group.name}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium text-foreground capitalize">{group.name}</span>
+            {group.isNew && (
+              <span className="inline-flex items-center rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                v4.2
+              </span>
+            )}
+          </div>
         </div>
         <div className="flex-1 grid grid-cols-11 gap-1.5 sm:gap-2">
           {group.shades.map((shade) => {
@@ -32,6 +39,7 @@ export function ColorRow({ group, favorites, onToggleFavorite, onCopy, copyForma
                 onToggleFavorite={() => onToggleFavorite(key)}
                 onCopy={onCopy}
                 copyFormat={copyFormat}
+                isNew={group.isNew}
               />
             );
           })}

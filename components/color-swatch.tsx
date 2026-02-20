@@ -13,6 +13,7 @@ interface ColorSwatchProps {
   onToggleFavorite: () => void;
   onCopy: (text: string, label: string) => void;
   copyFormat: CopyFormat;
+  isNew?: boolean;
 }
 
 function getCopyValue(shade: ColorShade, colorName: string, format: CopyFormat): { text: string; label: string } {
@@ -36,7 +37,7 @@ function getTextColor(hex: string): string {
   return luminance > 0.55 ? "#000000" : "#ffffff";
 }
 
-export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, onCopy, copyFormat }: ColorSwatchProps) {
+export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, onCopy, copyFormat, isNew }: ColorSwatchProps) {
   const [justCopied, setJustCopied] = useState(false);
   const textColor = getTextColor(shade.hex);
 
@@ -80,7 +81,10 @@ export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, on
         </div>
       </div>
       <div className="flex flex-col gap-0.5 px-2 py-1.5 bg-card text-left">
-        <span className="text-[11px] font-medium text-foreground">{shade.shade}</span>
+        <div className="flex items-center justify-between gap-1">
+          <span className="text-[11px] font-medium text-foreground">{shade.shade}</span>
+          {isNew && <span className="text-[9px] font-bold text-primary uppercase">NEW</span>}
+        </div>
         <span className="text-[10px] font-mono text-muted-foreground uppercase">{shade.hex}</span>
       </div>
     </div>

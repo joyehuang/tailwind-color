@@ -56,7 +56,7 @@ export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, on
       className="group relative flex flex-col rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-lg hover:shadow-black/20 focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer"
     >
       <div
-        className="h-16 sm:h-20 w-full relative flex items-center justify-center"
+        className="h-10 sm:h-16 lg:h-20 w-full relative flex items-center justify-center"
         style={{ backgroundColor: shade.hex }}
       >
         <div
@@ -79,7 +79,7 @@ export function ColorSwatch({ shade, colorName, isFavorite, onToggleFavorite, on
           <Heart className={`h-3.5 w-3.5 ${isFavorite ? "fill-current" : ""}`} />
         </div>
       </div>
-      <div className="flex flex-col gap-0.5 px-2 py-1.5 bg-card text-left">
+      <div className="hidden sm:flex flex-col gap-0.5 px-2 py-1.5 bg-card text-left">
         <span className="text-[11px] font-medium text-foreground">{shade.shade}</span>
         <span className="text-[10px] font-mono text-muted-foreground uppercase">{shade.hex}</span>
       </div>

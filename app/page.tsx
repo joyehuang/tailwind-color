@@ -13,11 +13,11 @@ import type { ColorShade } from "@/lib/tailwind-colors";
 type CopyFormat = "hex" | "oklch" | "tailwind" | "css-var";
 type ViewMode = "grid" | "list";
 
-const FORMAT_OPTIONS: { value: CopyFormat; label: string }[] = [
-  { value: "hex", label: "HEX" },
-  { value: "oklch", label: "OKLCH" },
-  { value: "tailwind", label: "Tailwind Class" },
-  { value: "css-var", label: "CSS Variable" },
+const FORMAT_OPTIONS: { value: CopyFormat; label: string; shortLabel: string }[] = [
+  { value: "hex", label: "HEX", shortLabel: "HEX" },
+  { value: "oklch", label: "OKLCH", shortLabel: "OKLCH" },
+  { value: "tailwind", label: "Tailwind Class", shortLabel: "Class" },
+  { value: "css-var", label: "CSS Variable", shortLabel: "CSS" },
 ];
 
 export default function TailwindColorsPage() {
@@ -113,7 +113,7 @@ export default function TailwindColorsPage() {
       <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           {/* Top Row: Branding + Actions */}
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between h-12 sm:h-14">
             <div className="flex items-center gap-3">
               {/* Color bar logo */}
               <div className="flex h-6 rounded-md overflow-hidden shrink-0">
@@ -128,15 +128,15 @@ export default function TailwindColorsPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              {/* Search */}
-              <div className="relative">
+              {/* Search — desktop only, mobile uses the row below */}
+              <div className="relative hidden sm:block">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="搜索颜色..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-36 sm:w-52 rounded-lg border border-border bg-secondary pl-8 pr-8 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+                  className="w-52 rounded-lg border border-border bg-secondary pl-8 pr-8 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
                 />
                 {search && (
                   <button
@@ -154,8 +154,11 @@ export default function TailwindColorsPage() {
                   onClick={() => setFormatDropdownOpen(!formatDropdownOpen)}
                   className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"
                 >
-                  <Copy className="h-3 w-3 text-muted-foreground" />
-                  <span className="text-primary">{FORMAT_OPTIONS.find((f) => f.value === copyFormat)?.label}</span>
+                  <Copy className="h-3 w-3 text-muted-foreground hidden sm:block" />
+                  <span className="text-primary">
+                    <span className="sm:hidden">{FORMAT_OPTIONS.find((f) => f.value === copyFormat)?.shortLabel}</span>
+                    <span className="hidden sm:inline">{FORMAT_OPTIONS.find((f) => f.value === copyFormat)?.label}</span>
+                  </span>
                   <ChevronDown className="h-3 w-3 text-muted-foreground" />
                 </button>
                 {formatDropdownOpen && (
@@ -216,18 +219,40 @@ export default function TailwindColorsPage() {
               </button>
             </div>
           </div>
+
+          {/* Mobile Search Row */}
+          <div className="pb-2.5 sm:hidden">
+            <div className="relative">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="搜索颜色..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full rounded-lg border border-border bg-secondary pl-8 pr-8 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Shade Labels */}
-      <div className="sticky top-16 z-10 border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="sticky top-[88px] sm:top-16 z-10 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 py-2">
-            <div className="w-20 shrink-0" />
-            <div className="flex-1 grid grid-cols-11 gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-2 sm:gap-4 py-2">
+            <div className="w-14 sm:w-20 shrink-0" />
+            <div className="flex-1 grid grid-cols-11 gap-1 sm:gap-1.5 lg:gap-2">
               {shadeLabels.map((shade) => (
                 <div key={shade} className="text-center">
-                  <span className="text-[11px] font-medium text-muted-foreground">{shade}</span>
+                  <span className="text-[9px] sm:text-[11px] font-medium text-muted-foreground">{shade}</span>
                 </div>
               ))}
             </div>

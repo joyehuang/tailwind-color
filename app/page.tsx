@@ -271,8 +271,13 @@ export default function TailwindColorsPage() {
                     const cg = typeof colorGroup === "string" ? tailwindColors.find((c) => c.name === colorGroup)! : colorGroup;
                     return (
                       <div key={cg.name} className="rounded-xl border border-border bg-card overflow-hidden">
-                        <div className="px-4 py-2.5 border-b border-border">
+                        <div className="px-4 py-2.5 border-b border-border flex items-center gap-2">
                           <h3 className="text-sm font-semibold text-foreground capitalize">{cg.name}</h3>
+                          {cg.isNew && (
+                            <span className="inline-flex items-center rounded px-1 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400 leading-none">
+                              v4.2
+                            </span>
+                          )}
                         </div>
                         <div className="p-2 flex flex-col gap-0.5">
                           {cg.shades.map((shade) => {

@@ -9,6 +9,7 @@ export type ColorGroup = {
   name: string;
   label: string;
   shades: ColorShade[];
+  isNew?: boolean;
 };
 
 // Complete Tailwind CSS v4 color palette with HEX and OKLCH values
@@ -390,6 +391,7 @@ export const tailwindColors: ColorGroup[] = [
   {
     name: "taupe",
     label: "Taupe",
+    isNew: true,
     shades: [
       { shade: 50, hex: "#fbfaf9", oklch: "oklch(98.6% 0.002 67.8)", tailwindClass: "bg-taupe-50" },
       { shade: 100, hex: "#f3f1f1", oklch: "oklch(96% 0.002 17.2)", tailwindClass: "bg-taupe-100" },
@@ -407,6 +409,7 @@ export const tailwindColors: ColorGroup[] = [
   {
     name: "mauve",
     label: "Mauve",
+    isNew: true,
     shades: [
       { shade: 50, hex: "#fafafa", oklch: "oklch(98.5% 0 0)", tailwindClass: "bg-mauve-50" },
       { shade: 100, hex: "#f3f1f3", oklch: "oklch(96% 0.003 325.6)", tailwindClass: "bg-mauve-100" },
@@ -424,6 +427,7 @@ export const tailwindColors: ColorGroup[] = [
   {
     name: "mist",
     label: "Mist",
+    isNew: true,
     shades: [
       { shade: 50, hex: "#f9fbfb", oklch: "oklch(98.7% 0.002 197.1)", tailwindClass: "bg-mist-50" },
       { shade: 100, hex: "#f1f3f3", oklch: "oklch(96.3% 0.002 197.1)", tailwindClass: "bg-mist-100" },
@@ -441,6 +445,7 @@ export const tailwindColors: ColorGroup[] = [
   {
     name: "olive",
     label: "Olive",
+    isNew: true,
     shades: [
       { shade: 50, hex: "#fbfbf9", oklch: "oklch(98.8% 0.003 106.5)", tailwindClass: "bg-olive-50" },
       { shade: 100, hex: "#f4f4f0", oklch: "oklch(96.6% 0.005 106.5)", tailwindClass: "bg-olive-100" },
